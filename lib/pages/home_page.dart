@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_login_page/controllers/home_controller.dart';
 import 'package:project_login_page/models/post_model.dart';
 import 'package:project_login_page/repositories/home_repository_imp.dart';
+import 'package:project_login_page/services/prefs_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,6 +25,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home Page'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                PrefsService.logout();
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil('/login', (_) => (true));
+              },
+              icon: Icon(Icons.logout))
+        ],
       ),
       body: ValueListenableBuilder<List<PostModel>>(
         valueListenable: _controller.posts,
@@ -34,7 +44,7 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (_, idx) => ListTile(
               leading: Text(list[idx].id.toString()),
               title: Text(list[idx].title),
-              trailing: Icon(Icons.arrow_forward),
+              trailing: const Icon(Icons.arrow_forward),
               onTap: () => Navigator.of(context).pushNamed(
                 '/details',
                 arguments: list[idx],

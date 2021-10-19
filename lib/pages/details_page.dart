@@ -12,29 +12,29 @@ class DetailsPage extends StatelessWidget {
         title: Text(args.title),
       ),
       body: Container(
-        padding: EdgeInsets.all(28),
+        padding: const EdgeInsets.all(28),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               args.title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Text(
               args.body,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Text(
               'Article: ${args.id.toString()},Autor: ${args.userid}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
               ),
             ),

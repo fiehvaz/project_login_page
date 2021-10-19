@@ -1,6 +1,9 @@
 # project_login_page
 
-A new Flutter project.
+Login page using 
+Dio (for http api request)
+Shared preferences ( save user login)
+routes and navigation.
 
 ## Getting Started
 

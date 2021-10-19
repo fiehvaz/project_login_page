@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project_login_page/components/login/custom_login_button_component.dart';
 import 'package:project_login_page/controllers/login_controller.dart';
+import 'package:project_login_page/widgets/custom_text_field_widget.dart';
 
 class LoginPage extends StatelessWidget {
   final LoginController _controller = LoginController();
@@ -16,37 +18,19 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Icon(Icons.people, size: 98),
-            TextField(
-              decoration: const InputDecoration(hintText: 'Login'),
+            CustomTextFieldWidget(
+              label: "login",
               onChanged: _controller.setLogin,
             ),
-            TextField(
-              decoration: const InputDecoration(hintText: 'Password'),
+            CustomTextFieldWidget(
+              label: "Senha",
               onChanged: _controller.setPass,
+              obscureText: true,
             ),
             const SizedBox(height: 15),
-            ValueListenableBuilder<bool>(
-              valueListenable: _controller.inLoader,
-              builder: (_, inLoader, __) => inLoader
-                  ? const CircularProgressIndicator()
-                  : ElevatedButton(
-                      onPressed: () {
-                        _controller.auth().then((result) {
-                          if (result) {
-                            Navigator.of(context).pushReplacementNamed('/home');
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Falha na validação'),
-                                duration: Duration(seconds: 5),
-                              ),
-                            );
-                          }
-                        });
-                      },
-                      child: const Text('Login'),
-                    ),
-            )
+            CustomLoginBottonComponent(
+              loginController: _controller,
+            ),
           ],
         ),
       ),
